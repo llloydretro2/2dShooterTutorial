@@ -1,6 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://ca3t3a6mqm27h"]
+[gd_scene load_steps=27 format=3 uid="uid://ca3t3a6mqm27h"]
 
+[ext_resource type="Script" uid="uid://vtbvl1r8alho" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://bc4yunylknhxd" path="res://Assets/Player/knight.png" id="1_uvnfx"]
+[ext_resource type="Script" uid="uid://c41ufwvk637tk" path="res://Scenes/Player/shoot_attack.gd" id="3_xpcdj"]
+[ext_resource type="PackedScene" uid="uid://c8j4r7ninn4sh" path="res://Scenes/projectile.tscn" id="4_mtuoh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
 size = Vector2(10, 14)
@@ -159,6 +162,9 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_a3d8c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -169,3 +175,11 @@ sprite_frames = SubResource("SpriteFrames_jincj")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.756069
+
+[node name="ShootAttack" type="Node2D" parent="."]
+position = Vector2(0, 5)
+script = ExtResource("3_xpcdj")
+projectile_scene = ExtResource("4_mtuoh")
+
+[node name="ShootTimer" type="Timer" parent="ShootAttack"]
+wait_time = 0.5
